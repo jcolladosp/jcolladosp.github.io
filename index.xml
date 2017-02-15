@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jose Collado</title>
-    <link>http://jcollado.pw/index.xml</link>
+    <link>http://jcolladosp.github.io/index.xml</link>
     <description>Recent content on Jose Collado</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 15 Feb 2017 22:26:52 +0100</lastBuildDate>
-    <atom:link href="http://jcollado.pw/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://jcolladosp.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>good to great</title>
-      <link>http://jcollado.pw/post/good-to-great/</link>
+      <link>http://jcolladosp.github.io/post/good-to-great/</link>
       <pubDate>Wed, 15 Feb 2017 22:26:52 +0100</pubDate>
       
-      <guid>http://jcollado.pw/post/good-to-great/</guid>
+      <guid>http://jcolladosp.github.io/post/good-to-great/</guid>
       <description>&lt;p&gt;I read &lt;strong&gt;Good to Great in January 2016&lt;/strong&gt;. An awesome read sharing detailed analysis on how good companies became great.&lt;/p&gt;
 </description>
     </item>
