@@ -1,0 +1,42 @@
+baseurl = "https://collado.pizza/"
+languageCode = "en-US"
+title = "jcolladosp"
+# Enable comments by entering your Disqus shortname
+disqusShortname = "jcolladosp"
+# Enable Google Analytics by entering your tracking code
+googleAnalytics = ""
+theme = "hugo-sustain"
+
+[permalinks]
+  post = "/:year/:month/:day/:slug"
+
+[params]
+  avatar = "avatar.png"
+  author = "Jose Collado"
+  description = "Hola"
+
+  # Custom assets can be linked with their paths relative to static/
+  custom_css = []
+  custom_js  = []
+
+[params.social]
+  Github        = "jcolladosp"
+  Email         = "jose@collado.pizza"
+  Twitter       = "jcolladosp"
+  LinkedIn      = "jcolladosp"
+  Stackoverflow = "jcolladosp"
+  Telegram      = "http://t.me/jcolladosp"
+
+## Main Menu
+[[menu.main]]
+  name = "blog"
+  weight = 100
+  identifier = "blog"
+  url = "/blog/"
+[[menu.main]]
+  name = "projects"
+  identifier = "projects"
+  weight = 200
+  url = "/projects/"
+
+
