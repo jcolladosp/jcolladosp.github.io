@@ -40,25 +40,31 @@
 				
 
 				</section>
-				<section data-markdown>
-
-					<script type="text/template">
-					### Introducción
+				<section>
 
 
-					* QuickSpec automáticamente encuentra leyes ecuacionales sobre un programa de Haskell. 
-					* Dada una colección de funciones, Quick-Spec intentara encontrar relaciones entre ellas y devolverá una lista de funciones
+					<h3>Introducción</h3>
+
+					<section>
+					<ul>	
+					<li>QuickSpec automáticamente encuentra leyes ecuacionales sobre un programa de Haskell</li>
+					<li>Dada una colección de funciones, Quick-Spec intentara encontrar relaciones entre ellas y devolverá una lista de funciones</li>
+					</ul>
+					</section>			
+					
 					<p>&nbsp;</p> 
-
-					##### Autor
-
-					* Autor: Nick Smallbone (http://www.cse.chalmers.se/~nicsma/)
-					* Universidad de Chalmers (Suecia)
+					<section>
 					
 					
-					
-					</script>
+					<h5> Autor </h5>
 
+					<ul>	
+					<li> Autor: Nick Smallbone <a href="http://www.cse.chalmers.se/~nicsma/">http://www.cse.chalmers.se/~nicsma/</a></li>
+					&nbsp;
+					<li> Universidad de Chalmers (Suecia) </li>
+					</ul>
+					
+						</section>
 				</section>	
 				<section>
 
@@ -91,39 +97,116 @@
 					</section>
 						</p>
 					<li>Código fuente y documentación: 
-					https://github.com/nick8325/quickspec/tree/v1</li>
+					<a href="https://github.com/nick8325/quickspec/tree/v1">https://github.com/nick8325/quickspec/tree/v1</a>
+					</li>
 					</ul>
 					
 					<img src="https://i.imgur.com/OOhyzjX.png">
 
 				</section>	
 
-				<section data-markdown>
-					<script type="text/template">
-						## Breve ejemplo
+				<section>
 
-						Usando variables y operaciones booleanas.
-						
-						```haskell
-						  -- A simple booleans example.
+					
+					<h3>Cómo trabajar con QuickSpec</h3>
 
-								import Test.QuickSpec hiding (bools)
+					<section>
+					<ul>	
+					<li>Quick-Spec solo puede descubrir ecuaciones y no otro tipo de leyes. Cuando se quiere descubrir leyes, a veces estas pueden ser descritas como ecuaciones que Quick-Spec podrá identificar.</li>
+					</ul>
+					</section>
+					<section>
+					<ul>	
+					<li>Para un uso eficiente de Quick-Spec debemos identificar correctamente las funciones que queremos examinar. Encontrar todas las ecuaciones posibles lleva mucho tiempo y un árbol de búsqueda mucho más extenso.
+					</li>
+					</ul>
+					</section>
+					<section>
+					<ul>
+					<li>Puesto que Quick-Spec no prueba las ecuaciones generadas, existe la pequeña posibilidad de que estas no sean ciertas. Para testearlas, el autor utiliza el programa Quick-Check nombrado anteriormente.
+					</li>
+					</ul>
+					</section>		
 
-								bools = [
-								  ["x", "y", "z"] `vars` (undefined :: Bool),
+					</section>
+					<section>
 
-								  "||"    `fun2` (||),
-								  "&&"    `fun2` (&&),
-								  "not"   `fun1` not,
-								  "True"  `fun0` True,
-								  "False" `fun0` False]
+					
+					<h3>Breve ejemplo</h3>
 
-								main = quickSpec bools
+					<section>
+					<pre><code data-trim data-noescape class="haskell">
+						-- Un ejemplo simple con booleanos.
+
+							import Test.QuickSpec hiding (bools)
+
+							bools = [
+							  ["x", "y", "z"] `vars` (undefined :: Bool),
+
+							  "||"    `fun2` (||),
+							  "&&"    `fun2` (&&),
+							  "not"   `fun1` not,
+							  "True"  `fun0` True,
+							  "False" `fun0` False]
+
+							main = quickSpec bools
+						</code></pre>
+					</section>
+					<section>
+					<h5>Resultado de la ejecución</h5>	
+
+					<pre><code data-trim data-noescape >
+							== API ==
+							-- functions --
+							True, False :: Bool
+							not :: Bool -> Bool
+							(||), (&&) :: Bool -> Bool -> Bool
+
+							-- variables --
+							x, y, z :: Bool
+
+							== Testing ==
+							Depth 1: 6 terms, 6 tests, 21 evaluations, 6 classes, 0 raw equations.
+							Depth 2: 61 terms, 500 tests, 28572 evaluations, 15 classes, 46 raw equations.
+							Depth 3: 412 terms, 500 tests, 205912 evaluations, 53 classes, 359 raw equations.
+							359 raw equations; 53 terms in universe.
+
+							== Equations about not ==
+							  1: not True == False
+							  2: not False == True
+							  3: not (not x) == x
+
+							== Equations about (||) ==
+							  4: x||y == y||x
+							  5: x||x == x
+							  6: x||True == True
+							  7: x||False == x
+							  8: x||(y||z) == y||(x||z)
+
+							== Equations about (&&) ==
+							  9: x&&y == y&&x
+							 10: x&&x == x
+							 11: x&&True == x
+							 12: x&&False == False
+							 13: x&&(y&&z) == y&&(x&&z)
+
+							== Equations about several functions ==
+							 14: x||(x&&y) == x
+							 15: x&&(x||y) == x
+							 16: x||not x == True
+							 17: x&&not x == False
+							 18: (x&&y)||(x&&z) == x&&(y||z)
+							 19: (x||y)&&(x||z) == x||(y&&z)
+							 20: not x||not y == not (x&&y)
+							 21: not x&&not y == not (x||y)
+						</code></pre>	
 				
-						```
-					</script>
+					</section>
+				
+				</section>	
+					<section>
+					<h2><p class="fragment grow">Demo</p> y <p class="fragment grow">preguntas</p></h2>
 				</section>
-				<section>Slide 2</section>
 			</div>
 		</div>
 
