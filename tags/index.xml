@@ -2,75 +2,75 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on jcolladosp</title>
-    <link>http://collado.pw/tags/</link>
+    <link>http://www.collado.pw/tags/</link>
     <description>Recent content in Tags on jcolladosp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://collado.pw/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.collado.pw/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Development</title>
-      <link>http://collado.pw/tags/development/</link>
+      <link>http://www.collado.pw/tags/development/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://collado.pw/tags/development/</guid>
+      <guid>http://www.collado.pw/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
-      <link>http://collado.pw/tags/go/</link>
+      <link>http://www.collado.pw/tags/go/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://collado.pw/tags/go/</guid>
+      <guid>http://www.collado.pw/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>http://collado.pw/tags/golang/</link>
+      <link>http://www.collado.pw/tags/golang/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://collado.pw/tags/golang/</guid>
+      <guid>http://www.collado.pw/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>http://collado.pw/tags/hugo/</link>
+      <link>http://www.collado.pw/tags/hugo/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://collado.pw/tags/hugo/</guid>
+      <guid>http://www.collado.pw/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Projects</title>
-      <link>http://collado.pw/tags/projects/</link>
+      <link>http://www.collado.pw/tags/projects/</link>
       <pubDate>Sun, 02 Oct 2016 22:55:05 -0400</pubDate>
       
-      <guid>http://collado.pw/tags/projects/</guid>
+      <guid>http://www.collado.pw/tags/projects/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Templates</title>
-      <link>http://collado.pw/tags/templates/</link>
+      <link>http://www.collado.pw/tags/templates/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://collado.pw/tags/templates/</guid>
+      <guid>http://www.collado.pw/tags/templates/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Themes</title>
-      <link>http://collado.pw/tags/themes/</link>
+      <link>http://www.collado.pw/tags/themes/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://collado.pw/tags/themes/</guid>
+      <guid>http://www.collado.pw/tags/themes/</guid>
       <description></description>
     </item>
     
