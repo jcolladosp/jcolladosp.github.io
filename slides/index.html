@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>QuickSpec</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai-sublime.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+
+					
+					<h1><p class="fragment highlight-green"> QuickSpec</p></h1>
+
+
+					<h4> Síntesis de especificaciones ecuacionales a partir de Haskell</h4>
+					
+					<p>&nbsp;</p>
+					<p><span class="fragment fade-left">Jose Collado</span> <span class="fragment fade-left"> &nbsp; Victor Ribera &nbsp;</span> <span class="fragment fade-left">Andrés Paul</span></p>	
+					
+					
+				
+
+				</section>
+				<section>
+
+
+					<h3>Introducción</h3>
+
+					<section>
+					<ul>	
+					<li>QuickSpec automáticamente encuentra leyes ecuacionales sobre un programa de Haskell</li>
+					<li>Dada una colección de funciones, Quick-Spec intentara encontrar relaciones entre ellas y devolverá una lista de ecuaciones</li>
+					</ul>
+					</section>			
+					
+					<p>&nbsp;</p> 
+					<section>
+					
+					
+					<h5> Autor </h5>
+
+					<ul>	
+					<li> Autor: Nick Smallbone <a href="http://www.cse.chalmers.se/~nicsma/">http://www.cse.chalmers.se/~nicsma/</a></li>
+					&nbsp;
+					<li> Universidad de Chalmers (Suecia) </li>
+					</ul>
+					
+						</section>
+				</section>	
+				<section>
+
+					
+					<h3>Motivación</h3>
+
+					<section>
+					<ul>	
+					<li><p class="fragment fade-up">Tenemos un programa y sabemos que algunas propiedades algebraicas se satisfacerán, pero no sabemos cuales.</p></li>
+					<li><p class="fragment fade-up">Tenemos un programa y queremos saber si una ley ecuacional que pensamos que se cumple se cumple realmente.</p></li>
+					<li><p class="fragment fade-up">Las leyes que QuickSpec genera no son testeadas, pero el autor ha testeado 200 leyes generadas con otra herramienta suya, QuickCheck.</p></li>
+					</ul>
+					</section>		
+					
+
+				</section>	
+
+				<section >
+
+				<h3>Instalación</h3>
+
+					<ul>	
+					<li>Usamos la v1 porque la v2 está en desarrollo y cuenta con escasa documentación.</li>
+					<li>Instala desde cabal (v1):</li>
+					<p class="fragment fade-up">	
+					<section>
+						<pre><code data-trim data-noescape>
+						cabal install quickspec
+						</code></pre>
+					</section>
+						</p>
+					<li>Código fuente y documentación: 
+					<a href="https://github.com/nick8325/quickspec/tree/v1">https://github.com/nick8325/quickspec/tree/v1</a>
+					</li>
+					</ul>
+					
+					<img src="https://i.imgur.com/OOhyzjX.png">
+
+				</section>	
+
+				<section>
+
+					
+					<h3>Cómo trabajar con QuickSpec</h3>
+
+					<section>
+					<ul>	
+					<li>Quick-Spec solo puede descubrir ecuaciones y no otro tipo de leyes. Cuando se quiere descubrir leyes, a veces estas pueden ser descritas como ecuaciones que Quick-Spec podrá identificar.</li>
+					</ul>
+					</section>
+					<section>
+					<ul>	
+					<li>Para un uso eficiente de Quick-Spec debemos identificar correctamente las funciones que queremos examinar. Encontrar todas las ecuaciones posibles lleva mucho tiempo y un árbol de búsqueda mucho más extenso.
+					</li>
+					</ul>
+					</section>
+					<section>
+					<ul>
+					<li>Puesto que Quick-Spec no prueba las ecuaciones generadas, existe la pequeña posibilidad de que estas no sean ciertas. Para testearlas, el autor utiliza el programa Quick-Check nombrado anteriormente.
+					</li>
+					</ul>
+					</section>		
+
+					</section>
+					<section>
+
+					
+					<h3>Breve ejemplo</h3>
+
+					<section>
+					<pre><code data-trim data-noescape class="haskell">
+						-- Un ejemplo simple con booleanos.
+
+							import Test.QuickSpec hiding (bools)
+
+							bools = [
+							  ["x", "y", "z"] `vars` (undefined :: Bool),
+
+							  "||"    `fun2` (||),
+							  "&&"    `fun2` (&&),
+							  "not"   `fun1` not,
+							  "True"  `fun0` True,
+							  "False" `fun0` False]
+
+							main = quickSpec bools
+						</code></pre>
+					</section>
+					<section>
+					<h5>Resultado de la ejecución</h5>	
+
+					<pre><code data-trim data-noescape >
+							== API ==
+							-- functions --
+							True, False :: Bool
+							not :: Bool -> Bool
+							(||), (&&) :: Bool -> Bool -> Bool
+
+							-- variables --
+							x, y, z :: Bool
+
+							== Testing ==
+							Depth 1: 6 terms, 6 tests, 21 evaluations, 6 classes, 0 raw equations.
+							Depth 2: 61 terms, 500 tests, 28572 evaluations, 15 classes, 46 raw equations.
+							Depth 3: 412 terms, 500 tests, 205912 evaluations, 53 classes, 359 raw equations.
+							359 raw equations; 53 terms in universe.
+
+							== Equations about not ==
+							  1: not True == False
+							  2: not False == True
+							  3: not (not x) == x
+
+							== Equations about (||) ==
+							  4: x||y == y||x
+							  5: x||x == x
+							  6: x||True == True
+							  7: x||False == x
+							  8: x||(y||z) == y||(x||z)
+
+							== Equations about (&&) ==
+							  9: x&&y == y&&x
+							 10: x&&x == x
+							 11: x&&True == x
+							 12: x&&False == False
+							 13: x&&(y&&z) == y&&(x&&z)
+
+							== Equations about several functions ==
+							 14: x||(x&&y) == x
+							 15: x&&(x||y) == x
+							 16: x||not x == True
+							 17: x&&not x == False
+							 18: (x&&y)||(x&&z) == x&&(y||z)
+							 19: (x||y)&&(x||z) == x||(y&&z)
+							 20: not x||not y == not (x&&y)
+							 21: not x&&not y == not (x||y)
+						</code></pre>	
+				
+					</section>
+				
+				</section>	
+					<section>
+					<h2><p class="fragment grow">Demo</p> y <p class="fragment grow">preguntas</p></h2>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
